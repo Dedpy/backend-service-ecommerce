@@ -3,7 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { User } from './models/user.entity';
+import { ProductsModule } from './products/products.module';
+import { Product } from './products/entities/product.entity';
+import { User } from './users/entities/user.entity';
+import { CommandesModule } from './commandes/commandes.module';
+import { Commande } from './commandes/entities/commande.entity';
+import { CommandeDetailsModule } from './commande-details/commande-details.module';
+import { CommandeDetail } from './commande-details/entities/commande-detail.entity';
 
 @Module({
   imports: [
@@ -14,10 +20,13 @@ import { User } from './models/user.entity';
       username: 'root',
       password: '',
       database: 'bradery',
-      entities: [User],
-      synchronize: true,
+      entities: [User, Product, Commande, CommandeDetail],
+      synchronize: false,
     }),
     UsersModule,
+    ProductsModule,
+    CommandesModule,
+    CommandeDetailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
