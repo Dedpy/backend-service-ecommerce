@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { CommandeDetail } from 'src/commande-details/entities/commande-detail.entity';
 import { User } from 'src/users/entities/user.entity';
 import {
@@ -14,6 +15,10 @@ export class Commande {
   id: number;
 
   @Column({ nullable: false })
+  @ApiProperty({
+    example: 10.2,
+    description: 'Commande price',
+  })
   prix: number;
 
   @ManyToOne(() => User, (user) => user.commandes)
