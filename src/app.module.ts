@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
@@ -11,12 +10,16 @@ import { Commande } from './commandes/entities/commande.entity';
 import { CommandeDetailsModule } from './commande-details/commande-details.module';
 import { CommandeDetail } from './commande-details/entities/commande-detail.entity';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { ConfigurationModule } from 'config/config.module';
 
 @Module({
   imports: [
+    ConfigurationModule,
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'mysql',
       port: 3306,
       username: 'root',
       password: '',
@@ -24,13 +27,14 @@ import { AuthModule } from './auth/auth.module';
       entities: [User, Product, Commande, CommandeDetail],
       synchronize: false,
     }),
+    ConfigModule.forRoot({}),
     UsersModule,
     ProductsModule,
     CommandesModule,
     CommandeDetailsModule,
     AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

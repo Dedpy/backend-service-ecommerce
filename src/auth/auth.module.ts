@@ -9,14 +9,12 @@ import { RefreshTokenIdsStorage } from './refresh-token-ids-storage';
 import { ConfigModule } from '@nestjs/config';
 import { LocalStrategy } from './strategy/local.strategy';
 import { JwtRefreshTokenStrategy } from './strategy/jwt-refresh-token.strategy';
+import { UsersService } from 'src/users/users.service';
 
 @Module({
   imports: [
     UsersModule,
-    ConfigModule.forRoot({
-      envFilePath: ['.env', '.env.development'],
-    }),
-
+    ConfigModule.forRoot({}),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'secret',
