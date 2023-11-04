@@ -10,6 +10,7 @@ import { CommandesModule } from './commandes/commandes.module';
 import { Commande } from './commandes/entities/commande.entity';
 import { CommandeDetailsModule } from './commande-details/commande-details.module';
 import { CommandeDetail } from './commande-details/entities/commande-detail.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { CommandeDetail } from './commande-details/entities/commande-detail.enti
     ProductsModule,
     CommandesModule,
     CommandeDetailsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
