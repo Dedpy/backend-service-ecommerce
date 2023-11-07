@@ -31,6 +31,7 @@ export class AuthService {
     });
     // await this.refreshTokenIdsStorage.insert(user.id, refreshToken);
     return {
+      user,
       access_token: accessToken,
       refresh_token: refreshToken,
     };

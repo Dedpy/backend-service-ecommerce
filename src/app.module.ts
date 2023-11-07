@@ -19,7 +19,7 @@ import { ConfigurationModule } from 'config/config.module';
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'mysql',
+      host: 'localhost',
       port: 3306,
       username: 'root',
       password: '',
