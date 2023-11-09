@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -16,6 +17,7 @@ import {
 import { CommandeDetailsService } from './commande-details.service';
 import { CreateCommandeDetailDto } from './dto/create-commande-detail.dto';
 import { UpdateCommandeDetailDto } from './dto/update-commande-detail.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiBearerAuth()
 @ApiTags('commande-details')
@@ -31,6 +33,7 @@ export class CommandeDetailsController {
     status: 200,
     description: 'The commande details has been successfully created.',
   })
+  @UseGuards(AuthGuard('jwt'))
   create(@Body() createCommandeDetailDto: CreateCommandeDetailDto) {
     return this.commandeDetailsService.create(createCommandeDetailDto);
   }
@@ -41,6 +44,7 @@ export class CommandeDetailsController {
     status: 200,
     description: 'All commande details',
   })
+  @UseGuards(AuthGuard('jwt'))
   findAll() {
     return this.commandeDetailsService.findAll();
   }
@@ -52,6 +56,7 @@ export class CommandeDetailsController {
     status: 200,
     description: 'One commande details',
   })
+  @UseGuards(AuthGuard('jwt'))
   findOne(@Param('id') id: string) {
     return this.commandeDetailsService.findOne(+id);
   }
@@ -62,6 +67,7 @@ export class CommandeDetailsController {
     status: 200,
     description: 'The commande details has been successfully updated.',
   })
+  @UseGuards(AuthGuard('jwt'))
   update(
     @Param('id') id: string,
     @Body() updateCommandeDetailDto: UpdateCommandeDetailDto,
@@ -76,6 +82,7 @@ export class CommandeDetailsController {
     status: 200,
     description: 'The commande details has been successfully deleted.',
   })
+  @UseGuards(AuthGuard('jwt'))
   remove(@Param('id') id: string) {
     return this.commandeDetailsService.remove(+id);
   }

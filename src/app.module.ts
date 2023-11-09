@@ -25,7 +25,7 @@ import { ConfigurationModule } from 'config/config.module';
       password: '',
       database: 'bradery',
       entities: [User, Product, Commande, CommandeDetail],
-      synchronize: false,
+      synchronize: true,
     }),
     ConfigModule.forRoot({}),
     UsersModule,

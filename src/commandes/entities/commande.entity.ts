@@ -14,7 +14,7 @@ export class Commande {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false })
+  @Column('decimal',{ nullable: false })
   @ApiProperty({
     example: 10.2,
     description: 'Commande price',

@@ -47,6 +47,7 @@ export class ProductsController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get one product' })
+  @UseGuards(AuthGuard('jwt'))
   @ApiResponse({
     status: 200,
     description: 'One product',
@@ -61,6 +62,7 @@ export class ProductsController {
     status: 200,
     description: 'The product has been successfully updated.',
   })
+  @UseGuards(AuthGuard('jwt'))
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     return this.productsService.update(+id, updateProductDto);
   }
@@ -71,6 +73,7 @@ export class ProductsController {
     status: 200,
     description: 'The product has been successfully deleted.',
   })
+  @UseGuards(AuthGuard('jwt'))
   remove(@Param('id') id: string) {
     return this.productsService.remove(+id);
   }
